@@ -81,12 +81,6 @@ export function NotFoundForm() {
             onChange={({ target: { value } }) => setMessage(value)}
             className="border border-gray-300 rounded-md p-2 mt-2 w-full dark:text-black"
           />
-          <label
-            className="mt-0.5 text-sm italic text-zinc-700 dark:text-zinc-300 mb-4"
-            htmlFor="pageDescription"
-          >
-            Describe the page you would like to create
-          </label>
           <button
             type="submit"
             className="p-2 bg-black text-white dark:bg-white dark:text-black rounded-lg uppercase text-sm mt-1 w-full"

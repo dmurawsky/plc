@@ -10,13 +10,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
+    "axios": "^1.7.4",
+    "firebase": "^10.13.0",
+    "firebase-admin": "^12.3.1",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "soil-react": "^0.0.7",
-    "soilai": "^0.0.42"
+    "react-markdown": "^9.0.1",
+    "react-toastify": "^10.0.5",
+    "soil-react": "^0.0.10",
+    "soilai": "^0.0.45"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.14",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

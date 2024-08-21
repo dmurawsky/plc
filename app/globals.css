@@ -8,8 +8,8 @@
     position: absolute;
     background-image: radial-gradient(
       56.1514% 56.1514% at 49.972% 38.959%,
-      rgb(39, 54, 73) 0%,
-      rgb(0, 0, 0) 100%
+      rgb(254 252 232 / var(--tw-bg-opacity)) 0%,
+      rgb(187 247 208 / var(--tw-bg-opacity)) 100%
     );
     top: -300px;
     min-height: 650px;
