@@ -1,16 +1,4 @@
-"use client";
-
-import React, { useCallback } from "react";
-import Image from "next/image";
-import Link from "next/link";
-
-const LOGO_SIZE = 100;
-
-const Home: React.FC = () => {
-  const handleLinkClick = useCallback(() => {
-    // Add any logic needed for the link click here
-  }, []);
-
+export default function HomePage() {
   return (
     <section
       data-soil-id="HomePage"
@@ -30,6 +18,4 @@ const Home: React.FC = () => {
       </a>
     </section>
   );
-};
-
-export default Home;
+}

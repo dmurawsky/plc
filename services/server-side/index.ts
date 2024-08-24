@@ -51,9 +51,15 @@ export function initializeAdminApp() {
 export const updateUser = (uid: string, updateRequest: UpdateRequest) =>
   getAuth().updateUser(uid, updateRequest);
 
+export const deleteUser = (uid: string) => getAuth().deleteUser(uid);
+
 export const resetPassword = (uid: string, updateRequest: UpdateRequest) =>
   getAuth().updateUser(uid, updateRequest);
 
 export function verifyIdToken(token: string) {
   return getAuth().verifyIdToken(token);
+}
+
+export function listUsers() {
+  return getAuth().listUsers();
 }

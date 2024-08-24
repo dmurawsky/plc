@@ -1,7 +1,9 @@
 "use client";
 import {
   createContext,
+  Dispatch,
   ReactNode,
+  SetStateAction,
   useContext,
   useEffect,
   useMemo,
@@ -10,11 +12,11 @@ import {
 
 // Firebase
 import { initializeFirebase } from "@/services/soil/init";
+import { getIsUserAdmin } from "@/services/soil/auth";
 
 // Types
 import type { FirebaseOptions } from "firebase/app";
-import { User } from "firebase/auth";
-import { getIsUserAdmin } from "./auth";
+import type { User } from "firebase/auth";
 
 /*
  ██████╗ ██████╗ ███╗   ██╗████████╗███████╗██╗  ██╗████████╗
@@ -27,6 +29,10 @@ import { getIsUserAdmin } from "./auth";
 type BaseSoilContext = {
   user: User | null | undefined;
   isAdmin: boolean;
+  isEditing: boolean;
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
+  editingDataKey?: string;
+  setEditingDataKey: Dispatch<SetStateAction<string | undefined>>;
 };
 
 const SoilContext = createContext<BaseSoilContext | undefined>(undefined);
@@ -51,10 +57,11 @@ type TProps = {
 export const SoilContextProviderComponent = ({
   children,
   firebaseOptions,
-  anonymousSignIn = false,
 }: TProps) => {
   const [user, setUser] = useState<User | null>();
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingDataKey, setEditingDataKey] = useState<string>();
 
   useEffect(() => {
     initializeFirebase(firebaseOptions, async (u) => {
@@ -63,6 +70,8 @@ export const SoilContextProviderComponent = ({
         getIsUserAdmin()
           .then(setIsAdmin)
           .catch(() => setIsAdmin(false));
+      } else {
+        setIsAdmin(false);
       }
     });
 
@@ -70,14 +79,18 @@ export const SoilContextProviderComponent = ({
       setUser(null);
       setIsAdmin(false);
     };
-  }, [firebaseOptions, anonymousSignIn]);
+  }, [firebaseOptions]);
 
   const ctx = useMemo(
     () => ({
       user,
       isAdmin,
+      isEditing,
+      setIsEditing,
+      editingDataKey,
+      setEditingDataKey,
     }),
-    [user, isAdmin]
+    [user, isAdmin, isEditing, setIsEditing, editingDataKey, setEditingDataKey]
   );
 
   return <SoilContext.Provider value={ctx}>{children}</SoilContext.Provider>;

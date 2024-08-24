@@ -51,7 +51,7 @@ const logAndThrow =
 export const get = <T>(path: string) =>
   database
     .get(getRef(path))
-    .then((snap) => snap.val() as T)
+    .then((snap) => snap.val() as T | null)
     .catch(logAndThrow("get", path));
 
 // TODO: Maybe make the val typesafe, but it isn't possible if the path is double nested (e.g. thing/thang)

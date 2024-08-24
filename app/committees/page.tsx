@@ -1,25 +1,19 @@
-"use client";
+import { TitleAndList } from "@/services/types";
+import { getData } from "@/services/client-side/api";
 
-import React, { useCallback } from "react";
+export default async function CommitteesPage() {
+  const committees = await getData<TitleAndList>("committees");
 
-export default function Page() {
-  const renderList = useCallback((): JSX.Element => {
-    return (
+  return (
+    <div data-soil-id="CommitteesPage" className="flex flex-col p-4">
+      <h1>{committees.title}</h1>
+      <p>{committees.content}</p>
+
       <ul>
         <li>Finance</li>
         <li>Fundraiser</li>
         <li>Project</li>
       </ul>
-    );
-  }, []);
-
-  return (
-    <div
-      data-soil-id="8fcb9a40-9535-4c95-b97b-5243c0b677d2"
-      className="text-black dark:text-white flex flex-col p-4"
-    >
-      <h1>Committees</h1>
-      {renderList()}
     </div>
   );
 }

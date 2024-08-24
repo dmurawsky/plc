@@ -40,7 +40,6 @@ const links: MenuLink[] = [
       { href: "/in-honor-of", label: "In Honor of" },
     ],
   },
-  { href: "/donate", label: "Donate" },
 ];
 
 function DropdownMenu({ subLinks }: { subLinks: Omit<MenuLink, "links">[] }) {
@@ -82,6 +81,15 @@ function MobileMenu({ onClose }: MobileMenuProps) {
           {link.label}
         </Link>
       ))}
+      <div className="p-4 flex mt-2">
+        <a
+          href="https://www.paypal.com/donate/?hosted_button_id=77T6VMQDDLZ6Y"
+          target="_blank"
+          className="text-xl text-center bg-white text-green-800 p-2 rounded hover:bg-zinc-200 md:hidden w-full"
+        >
+          Donate
+        </a>
+      </div>
     </div>
   );
 }
@@ -102,7 +110,7 @@ export function Header() {
         {links.map((link) =>
           link.links ? (
             <div key={link.href} className="relative group hidden md:block">
-              <Link href="/about-us">About Us</Link>
+              <Link href="/about-us">{link.label}</Link>
               <DropdownMenu subLinks={link.links} />
             </div>
           ) : (
@@ -112,12 +120,13 @@ export function Header() {
           )
         )}
       </div>
-      <Link
-        href="/donate"
+      <a
+        href="https://www.paypal.com/donate/?hosted_button_id=77T6VMQDDLZ6Y"
+        target="_blank"
         className="bg-white text-green-800 p-2 rounded hover:bg-zinc-200 hidden md:block"
       >
         Donate
-      </Link>
+      </a>
       <button className="md:hidden p-2" onClick={() => setMobileMenuOpen(true)}>
         <span className="block w-6 h-0.5 bg-white mb-1"></span>
         <span className="block w-6 h-0.5 bg-white mb-1"></span>

@@ -12,6 +12,8 @@ import { ToastContainer } from "react-toastify";
 // Components
 import "animate.css";
 import "./globals.css";
+import { EditingToggle } from "@/components/editing-toggle";
+import { EditorModal } from "@/components/editor-modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,15 +27,15 @@ const FIREBASE_OPTIONS = {
 };
 
 export const metadata: Metadata = {
-  title: "My Soil App",
-  description: "Build your own Soil app",
+  title: "Putnam Land Conservancy",
+  description: "Conserving the land in Putnam County",
   openGraph: {
     type: "website",
-    title: "Soil",
-    siteName: "Soil",
-    url: "https://soilai.dev",
-    description: "Optimizing Next.js development",
-    images: [{ url: "https://soilai.dev/soil.png" }],
+    title: "Putnam Land Conservancy",
+    siteName: "Putnam Land Conservancy",
+    url: "https://putnamlandconservancy.org/",
+    description: "Conserving the land in Putnam County",
+    images: [{ url: "https://putnamlandconservancy.org/soil.png" }],
   },
 };
 
@@ -53,11 +55,10 @@ export default function RootLayout({
       <body className={`${inter.className} bg-green-200`}>
         <div className="background" />
         <Header />
-        <main className="relative pt-10">
-          <SoilContextProviderComponent firebaseOptions={FIREBASE_OPTIONS}>
-            {children}
-          </SoilContextProviderComponent>
-        </main>
+        <SoilContextProviderComponent firebaseOptions={FIREBASE_OPTIONS}>
+          <main className="relative">{children}</main>
+          <EditorModal />
+        </SoilContextProviderComponent>
         <ToastContainer />
         <SoilAi />
       </body>
